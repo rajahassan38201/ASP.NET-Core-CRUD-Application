@@ -1,0 +1,63 @@
+﻿@model IEnumerable<CRUD_Code_First_Approach.Models.Student>
+<h1>Home Page</h1>
+<a asp-action="Create" class="btn btn-primary btn-lg">Add New</a><br /><br />
+@{
+    if(TempData["insert_success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong>@TempData["insert_success"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <br />
+    }
+    if (TempData["update_success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong>@TempData["update_success"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <br />
+    }
+    if (TempData["delete_success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong>@TempData["delete_success"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <br />
+    }
+}
+<table id="example" class="table table-bordered table-responsive-md table-striped text-center">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>University</th>
+        <th>Age</th>
+        <th>Mobile Number</th>
+        <th>View</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+    @foreach(var item in Model)
+{
+    <tr>
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td>@item.University</td>
+            <td>@item.Age</td>
+            <td>@item.Mobile</td>
+            <td><a asp-action="Detail" asp-route-id="@item?.Id" class="btn btn-warning">View</a></td>
+            <td><a asp-action="Update" asp-route-id="@item?.Id" class="btn btn-primary">Update</a></td>
+            <td><a asp-action="Delete" asp-route-id="@item?.Id" class="btn btn-danger">Delete</a></td>
+    </tr>
+}
+
+</table>
+
+
